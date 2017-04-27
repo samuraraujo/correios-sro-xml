@@ -29,6 +29,26 @@ module Correios
           objects
         end
       end
+      def to_s
+         return super() if @response == nil 
+          Correios::SRO::Parser.new().objects(@response).values.first.events.map{|event|
+       [
+               event.type,
+               event.status,
+               event.date,
+               event.hour,
+               event.description,
+               event.receiver,
+               event.document,
+               event.comment,
+               event.place,
+               event.code,
+               event.city,
+               event.state,
+               event.sto,
+               event.destination].join("\t")}
+    end
+      end
 
       private
 
