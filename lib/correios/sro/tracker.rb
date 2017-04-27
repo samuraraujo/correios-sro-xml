@@ -30,7 +30,7 @@ module Correios
         end
       end
 
-      private
+      
 
       def set_attributes_from_config!
         [:user, :password].each do |attr|
