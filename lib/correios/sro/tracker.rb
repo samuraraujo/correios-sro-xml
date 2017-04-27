@@ -3,7 +3,7 @@ module Correios
     class Tracker
 
       attr_accessor :user, :password, :query_type, :result_mode, :language
-      attr_reader :object_numbers
+      attr_accessor :object_numbers
 
       DEFAULT_OPTIONS = { query_type: :list, result_mode: :last, language: :pt }.freeze
 
