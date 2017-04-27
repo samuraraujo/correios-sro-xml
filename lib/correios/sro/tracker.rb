@@ -2,7 +2,7 @@ module Correios
   module SRO
     class Tracker
 
-      attr_accessor :user, :password, :query_type, :result_mode, :language
+      attr_accessor :user, :password, :query_type, :result_mode, :language, :response
       attr_accessor :object_numbers
 
       DEFAULT_OPTIONS = { query_type: :list, result_mode: :last, language: :pt }.freeze
@@ -20,8 +20,8 @@ module Correios
 
       def get(*object_numbers)
         @object_numbers = object_numbers.flatten
-        response = web_service.request!
-        objects = parser.objects(response)
+        @response = web_service.request!
+        objects = parser.objects(@response)
 
         if @object_numbers.size == 1
           objects.values.first
@@ -30,7 +30,7 @@ module Correios
         end
       end
 
-      
+      private
 
       def set_attributes_from_config!
         [:user, :password].each do |attr|
