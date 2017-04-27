@@ -47,7 +47,7 @@ module Correios
                event.state,
                event.sto,
                event.destination].join("\t")}
-    end
+     
       end
 
       private
